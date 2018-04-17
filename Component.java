@@ -1,3 +1,4 @@
+package BloonBlaster;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -38,7 +39,7 @@ public class Component extends JComponent {
 	}
 
 	private void setInput() {
-		final String[] directions = { "FLY", "LEFT", "RIGHT" };
+		final String[] directions = { "SPACE", "LEFT", "RIGHT" };
 		for (final String direction : directions) {
 			getInputMap().put(KeyStroke.getKeyStroke(direction), direction);
 			getActionMap().put(direction, new AbstractAction() {

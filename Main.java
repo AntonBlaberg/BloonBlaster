@@ -1,3 +1,5 @@
+package BloonBlaster;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,7 +27,7 @@ public class Main {
 			}
 		};
 
-		Timer timer = new Timer(17, doOneStep); // 17 updates/second is approx. 60 Hz
+		Timer timer = new Timer(25, doOneStep); // 17 updates/second is approx. 60 Hz
 		timer.setCoalesce(true); // Skip a tick if last tick isn't finished
 		timer.start();
 
