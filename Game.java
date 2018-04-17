@@ -1,4 +1,9 @@
+package BloonBlaster;
 import java.awt.Point;
+
+import javax.swing.text.Position;
+
+import sun.awt.WindowIDProvider;
 
 public class Game {
 
@@ -8,6 +13,8 @@ public class Game {
 	private boolean movingLeft;
 	private boolean movingRight;
 	private int speed;
+	private double dx = 0;
+	private double dy = 0;
 
 	public Game() {
 		this.position = new Point(50, 300);
@@ -19,22 +26,43 @@ public class Game {
 	}
 
 	public void update(double updateTime) {
-		double dx = 0;
-		double dy = 0;
-		double movement = this.speed * updateTime * 0.001; // Convert milliseconds to seconds
+		dx = dx * 0.95;		//luftmotstånd
+		dy = dy + 0.1;		//gravitation
+		
+		double movement = this.speed * updateTime * 0.001; // Convert milliseconds to seconds. Exempel movement = 8;
+		/*
 		if ((movingLeft || movingRight) && (!movingLeft || !movingRight)) {
 			dx = (movingLeft ? -movement : movement);
 		}
-		if (jetpack) {
-			dy = -movement;
+		*/
+		//försök på att byta ut den ovanför
+		if ((movingLeft || movingRight) && (!movingLeft || !movingRight)) {
+			if((movingLeft)&&(Math.abs(dx) < 10)){
+				dx = dx - 1;
+			}
+			else if(Math.abs(dx) < 10)
+			dx = dx + 1;	
 		}
-
+		//fixa så att det inte finns oändligt med jetpack
+		if (jetpack) {
+			dy = dy - 0.6;
+		}
+		if(position.getX()>Component.WIDTH-radius)
+			dx = -1;
+		if(position.getY()>Component.HEIGHT-radius)
+			dy = -1;
+		if(position.getX()<radius)
+			dx = 1;
+		if(position.getY()<radius)
+			dy = 1;
+		
+		System.out.println("X: " + position.getX() + " Y: " + position.getY());
 		this.position.translate((int) dx, (int) dy);
 	}
 
 	public void move(String dir, boolean val) {
 		switch (dir) {
-		case "FLY":
+		case "SPACE":
 			jetpack = val;
 			break;
 		case "LEFT":
