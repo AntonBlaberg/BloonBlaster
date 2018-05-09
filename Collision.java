@@ -36,8 +36,8 @@ public class Collision {
 
 	}
 
-	public double getAngle(double höjd, double bredd){
-		return Math.atan(höjd/bredd);
+	public double getAngle(double hojd, double bredd){
+		return Math.atan(hojd/bredd);
 	}
 	
 	
