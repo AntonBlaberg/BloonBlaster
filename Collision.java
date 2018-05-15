@@ -10,7 +10,7 @@ public class Collision {
 		double P2VxSqr = P2.getVx() * P2.getVx();
 		double P2VySqr = P2.getVy() * P2.getVy();
 		
-			//speed vector for both particles
+			// Gör om partiklarnas x och y hastigheter till vektorer med "längd" och vinkel
 		   double speed1 = Math.sqrt(P1VxSqr + P1VySqr);
 		   double speed2 = Math.sqrt(P2VxSqr + P2VySqr);
 		   double direction_1 = Math.atan2(P1.getVy(), P1.getVx());
