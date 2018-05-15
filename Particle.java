@@ -15,7 +15,7 @@ public class Particle {
 	private int i = 0;
 	private double r_origin;
 	private double spawnX;
-
+	
 	public Particle(double x, double y, double r, Color color, double vx,
 			double vy) {
 		this.x = x;
@@ -25,7 +25,7 @@ public class Particle {
 		this.color = color;
 		this.vx = vx;
 		this.vy = vy;
-		this.m = Math.pow(r, 1.3);	//Massan ökar jämfört med radien.
+		this.m = Math.pow(r, 3);	//Massan ökar jämfört med radien.
 		spawnX = x/PhysicsCanvas.WIDTH;
 	}
 
@@ -62,7 +62,6 @@ public class Particle {
 		if ((vx + vy) < 1.5) {
 			i++;
 			if (i > 200) {
-				System.out.println(this.toString());
 				//sista studsen i marken = ny position i taket.
 				if ((y > PhysicsCanvas.HEIGHT - r - 1)) {
 					y = -100;

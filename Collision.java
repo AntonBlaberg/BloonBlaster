@@ -3,8 +3,7 @@ package Studs_boll_med_boll;
 public class Collision {
 	
 	public void krock(Particle P1, Particle P2) {
-		double angle = (getAngle(P2.getY()-P1.getY(), (P2.getX()-P1.getX())));
-		System.out.println("alpha:  "+Math.toDegrees(angle));		
+		double angle = (getAngle(P2.getY()-P1.getY(), (P2.getX()-P1.getX())));		
 		
 		double P1VxSqr = P1.getVx() * P1.getVx();
 		double P1VySqr = P1.getVy() * P1.getVy();
@@ -29,6 +28,7 @@ public class Collision {
 
 		   double cosAngle = Math.cos(angle);
 		   double sinAngle = Math.sin(angle);
+		   
 		   P1.setVx(cosAngle * final_xspeed_1 - sinAngle * final_yspeed_1);
 		   P1.setVy(sinAngle * final_xspeed_1 + cosAngle * final_yspeed_1);
 		   P2.setVx(cosAngle * final_xspeed_2 - sinAngle * final_yspeed_2);
@@ -36,8 +36,8 @@ public class Collision {
 
 	}
 
-	public double getAngle(double hojd, double bredd){
-		return Math.atan(hojd/bredd);
+	public double getAngle(double höjd, double bredd){
+		return Math.atan(höjd/bredd);
 	}
 	
 	

@@ -9,11 +9,11 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 /**
  * 
- * Här är programmet BloonBlaster!
+ * Här är spelet från basgrupp 4!
  * Kommentererna är på svenska vilket kan messa up en hel del. Vi hoppas på det bästa.
  * BG4 VT2018 
  * Fysikaliska Modeller TFYA15
- * @author antonblaberg
+ * 
  *
  */
 
@@ -21,21 +21,23 @@ import javax.swing.JFrame;
 public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 
 	public void startGame(){
+		//X Värde, Yvärde, Radie(som skalas med bredden på skärmen), färg, xfart, yfart
 		p1 = new Particle(WIDTH*0.15, 71, WIDTH/15*rnd(), Color.RED, -5, -rnd());
 		p2 = new Particle(WIDTH*0.35, 71, WIDTH/15*rnd(), Color.BLUE, 7, -rnd());
 		p3 = new Particle(WIDTH*0.50, 71, WIDTH/15*rnd(), Color.GREEN, -rnd(), -rnd());
 		p4 = new Particle(WIDTH*0.65, 71, WIDTH/15*rnd(), Color.YELLOW, -rnd(), -rnd());
-		p5 = new Particle(WIDTH*0.85, 71, WIDTH/15*rnd(), Color.ORANGE, -rnd(), -rnd());
+		p5 = new Particle(WIDTH*0.85, 71, WIDTH/15*rnd(), Color.CYAN, -rnd(), -rnd());
 		game = new Player(WIDTH-30, HEIGHT-60, 30, 60);
 	}
 	
-	private static final long serialVersionUID = 1337L; 	//Måste vara här enligt rad 11.
+	private static final long serialVersionUID = 1337L; 	//Måste vara här enligt rad 21.
 
 	public Player game;
 	Collision col = new Collision();
 	private boolean running;
 	private Particle p1, p2, p3, p4 ,p5;
 
+	//kan lätt bytas och allt borde fungera bra ändå.
 	public static final int WIDTH = 1200;
 	public static final int HEIGHT = 600;
 	public PhysicsCanvas() {
@@ -44,7 +46,6 @@ public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 		setPreferredSize(d);
 		setMinimumSize(d);
 		setMaximumSize(d);
-
 		startGame();
 	}
 
@@ -91,10 +92,6 @@ public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 	}
 // kickar igår KeyListenern
 	private void update() {
-		while(true){
-			addKeyListener(this);
-			break;
-		}
 		p1.update();
 		p2.update();
 		p3.update();
@@ -155,8 +152,9 @@ public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 	}
 	
 	public static void main(String[] args) {
-		JFrame myFrame = new JFrame("BLOON BLASTER");
+		JFrame myFrame = new JFrame("BG4");
 		PhysicsCanvas physics = new PhysicsCanvas();
+		physics.addKeyListener(physics);
 		myFrame.add(physics);
 		myFrame.pack();
 		myFrame.setResizable(false);
@@ -169,7 +167,7 @@ public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 	@Override
 	public void keyPressed(java.awt.event.KeyEvent event) {
 		System.out.println("Key pressed:"+ event.getKeyCode());
-		if(event.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE)
+		if(event.getKeyCode() == event.VK_SPACE||event.getKeyCode() == event.VK_UP)
 			game.jetpack = true;
 		
 		if(event.getKeyCode() == event.VK_LEFT)
@@ -181,7 +179,7 @@ public class PhysicsCanvas extends Canvas implements Runnable, KeyListener{
 	
 	@Override
 	public void keyReleased(java.awt.event.KeyEvent event) {
-		if(event.getKeyCode() == event.VK_SPACE)
+		if(event.getKeyCode() == event.VK_SPACE||event.getKeyCode() == event.VK_UP)
 			game.jetpack = false;
 		
 		if(event.getKeyCode() == event.VK_LEFT)
