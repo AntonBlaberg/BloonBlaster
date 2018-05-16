@@ -1,4 +1,4 @@
-package Studs_boll_med_boll;
+package Studs_boll_med_boll;	// Ta bort denna om ni inte har ett sånt paket (inga problem kan hända om ni tar bort)
 
 public class Collision {
 	
