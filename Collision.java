@@ -24,7 +24,7 @@ public class Collision {
 
 		   //X och Y axlar är här vridna till boll mot boll och vinkelrätt boll mot boll.
 		   //Final X hastigheter uträknas genom elastisk krock med massa inräknat. 
-		   //Final Y hastigheter händer ingenting med.
+		   //Final Y hastigheter bevaras
 		   double final_xspeed_1 = ((P1.getM() - P2.getM()) * new_xspeed_1 + (P2.getM() + P2.getM()) * new_xspeed_2) / (P1.getM() + P2.getM());
 		   double final_xspeed_2 = ((P1.getM() + P1.getM()) * new_xspeed_1 + (P2.getM() - P1.getM()) * new_xspeed_2) / (P1.getM() + P2.getM());
 		   double final_yspeed_1 = new_yspeed_1;
@@ -34,6 +34,7 @@ public class Collision {
 		   double cosAngle = Math.cos(angle);
 		   double sinAngle = Math.sin(angle);
 		   
+		   //Återställande av Vx och Vy i det vanliga koordinatsystemet från nya hastighetsvektorer
 		   P1.setVx(cosAngle * final_xspeed_1 - sinAngle * final_yspeed_1);
 		   P1.setVy(sinAngle * final_xspeed_1 + cosAngle * final_yspeed_1);
 		   P2.setVx(cosAngle * final_xspeed_2 - sinAngle * final_yspeed_2);
